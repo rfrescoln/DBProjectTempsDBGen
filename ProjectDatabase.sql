@@ -2,10 +2,10 @@ CREATE SCHEMA Project;
 USE Project;
 
 #User: Username(PK), Password, Role, FName, LName, Email, HomeAddress, ContactDetail, Gender
-CREATE TABLE User(
+CREATE TABLE UserTable(
 	Username VARCHAR(20),
-    Password VARCHAR(20),
-    Role VARCHAR(20),
+    Pass VARCHAR(20),
+    UserRole VARCHAR(20),
     FName VARCHAR(20),
     LName VARCHAR(20),
     Email VARCHAR(20),
@@ -65,8 +65,7 @@ CREATE TABLE PurchaseOrder (
     MISeq INT(5),
     VendorName VARCHAR(20),
     Primary Key (OrderID, SeqNo),
-    Foreign Key (MIID) References MaterialIndent(MIID),
-    Foreign Key (MISeq) References MaterialIndent(SeqNo),
+    Foreign Key (MIID, MISeq) References MaterialIndent(MIID, SeqNo),
     Foreign Key (VendorName) References Vendor(VendorName)
     );
 #GoodsReceipt: ReceiptID (PK), OrderID (FK), OrderDate, OrderStatus, BillingAddress, PaymentMethod, OrderPrice
@@ -88,21 +87,21 @@ CREATE TABLE GR_ItemsOrdered (
     ItemCode VARCHAR(10),
     Quantity INT(10),
     Foreign Key (ReceiptID) References GoodsReceipt(ReceiptID),
-    Primary Key (RecieptID, SeqNo)
+    Primary Key (ReceiptID, SeqNo)
     );
     
 #Filling Tables (10 each)
 #User
-INSERT INTO User Values("pbicket","password123","Vendor","Patrick","Bicket","email","address","contact","Male");
-INSERT INTO User Values("aburhop","password123","Manager","Alex","Burhop","email","address","contact","Male");
-INSERT INTO User Values("rfrescoln","password123","Admin","Rachel","Frescoln","email","address","contact","Female");
-INSERT INTO User Values("lsingbush","password123","shop","Lauren","Singbush","email","address","contact","Female");
-INSERT INTO User Values("raman","password123","Manager","Raman","Aravamudhan","email","address","contact","Male");
-INSERT INTO User Values("ingroj","password123","Manager","Ingroj","Shrestha","email","address","contact","Male");
-INSERT INTO User Values("troubleshootAd","password123","Admin","Tester","Admin","email","address","contact","N/A");
-INSERT INTO User Values("troubleshootSh","password123","Shop","Tester","Shop","email","address","contact","N/A");
-INSERT INTO User Values("troubleshootMg","password123","Manager","Tester","Manager","email","address","contact","N/A");
-INSERT INTO User Values("troubleshootVd","password123","Vendor","Tester","Vendor","email","address","contact","N/A");
+INSERT INTO UserTable Values("pbicket","password123","Vendor","Patrick","Bicket","email","address","contact","Male");
+INSERT INTO UserTable Values("aburhop","password123","Manager","Alex","Burhop","email","address","contact","Male");
+INSERT INTO UserTable Values("rfrescoln","password123","Admin","Rachel","Frescoln","email","address","contact","Female");
+INSERT INTO UserTable Values("lsingbush","password123","Shop","Lauren","Singbush","email","address","contact","Female");
+INSERT INTO UserTable Values("raman","password123","Manager","Raman","Aravamudhan","email","address","contact","Male");
+INSERT INTO UserTable Values("ingroj","password123","Manager","Ingroj","Shrestha","email","address","contact","Male");
+INSERT INTO UserTable Values("troubleshootAd","password123","Admin","Tester","Admin","email","address","contact","N/A");
+INSERT INTO UserTable Values("troubleshootSh","password123","Shop","Tester","Shop","email","address","contact","N/A");
+INSERT INTO UserTable Values("troubleshootMg","password123","Manager","Tester","Manager","email","address","contact","N/A");
+INSERT INTO UserTable Values("troubleshootVd","password123","Vendor","Tester","Vendor","email","address","contact","N/A");
 #Vendor
 INSERT INTO Vendor Values("Target",15,"Medium","email","phone");
 INSERT INTO Vendor Values("Hawk Shop",10,"Medium","email","phone");
